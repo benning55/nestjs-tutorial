@@ -28,3 +28,13 @@ $ nest generate controller users
 # create service of module (Database doing stuff)
 $ nest g service users
 ```
+
+```Login path
+$ http://localhost:3000/login/
+
+local-auth.guard -> local.strategy -> validate -> authService.login -> jwt access token
+
+$ http://localhost:3000/protected/
+
+jwt-auth.guard -> jwt.strategy -> validate -> usersService.getUserById -> User
+```

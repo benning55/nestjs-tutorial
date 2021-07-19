@@ -35,7 +35,9 @@ export class UsersController {
   @ApiOkResponse({ type: User })
   @ApiNotFoundResponse()
   @Get(':id')
-  getUserById(@Param('id', ParseIntPipe) id: number): User {
+  async getUserById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<User | undefined> {
     const user = this.usersService.findById(id);
 
     if (!user) {
@@ -44,10 +46,10 @@ export class UsersController {
     return user;
   }
 
-  @ApiCreatedResponse({ type: User })
-  @ApiBadRequestResponse()
-  @Post()
-  createUser(@Body() body: CreateUserDto): User {
-    return this.usersService.createUser(body);
-  }
+  // @ApiCreatedResponse({ type: User })
+  // @ApiBadRequestResponse()
+  // @Post()
+  // createUser(@Body() body: CreateUserDto): User {
+  //   return this.usersService.createUser(body);
+  // }
 }

@@ -5,4 +5,8 @@ export class User {
   id: number;
   @ApiProperty()
   name: string;
+  @ApiProperty()
+  username: string;
+  @ApiProperty()
+  password: string;
 }

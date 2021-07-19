@@ -4,9 +4,9 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [
-    { id: 0, name: 'Benning' },
-    { id: 1, name: 'Muse' },
+  private readonly users: User[] = [
+    { id: 1, name: 'Benning', username: 'benning55', password: '12345' },
+    { id: 2, name: 'Muse', username: 'muse12', password: '12345' },
   ];
 
   findAll(name?: string): User[] {
@@ -17,13 +17,18 @@ export class UsersService {
   }
 
   findById(userId: number): User {
-    return this.users.find((user) => user.id === userId);
+    const test: User = this.users.find((user) => user.id === userId);
+    return test;
   }
 
-  createUser(createUserDto: CreateUserDto): User {
-    const newUser = { id: Date.now(), ...createUserDto };
-    this.users.push(newUser);
-
-    return newUser;
+  async findOne(username: string): Promise<User | undefined> {
+    return this.users.find((user) => user.username === username);
   }
+
+  // createUser(createUserDto: CreateUserDto): User {
+  //   const newUser = { id: Date.now(), ...createUserDto };
+  //   this.users.push(newUser);
+
+  //   return newUser;
+  // }
 }
